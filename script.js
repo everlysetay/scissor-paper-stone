@@ -1,18 +1,3 @@
-/*
-How many hours did you spend on this assignment?:
-Part 1 - 1 hr 20mins
-
-What part of the assignment did you spend the most time on?:
-Part 1 - Reversed Game - some logic got mixed up
-
-How comfortable did you feel with this assignment? (1-5):
-
-Is there anything in this code that you feel pleased about?:
-
-What's one aspect of your code you would like specific, elaborate feedback on?:
-
-*/
-
 var PLAYED_SCISSORS = "scissors";
 var PLAYED_PAPER = "paper";
 var PLAYED_STONE = "stone";
