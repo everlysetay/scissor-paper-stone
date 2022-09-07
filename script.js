@@ -9,6 +9,12 @@ var RESULT_DRAW = "draw";
 var RESULT_WIN = "win! Hooray!";
 var RESULT_LOSE = "lose! Bummer.";
 
+var winner_player = Number(0);
+var winner_comp = Number(0);
+var winner_draw = Number(0);
+
+var username = "";
+
 var generateRandomChoice = function () {
   //generate a choice between 0, 1, 2
   return Math.floor(Math.random() * 3);
@@ -53,6 +59,36 @@ var validateInput = function (input) {
   return false;
 };
 
+var updateWinLossRecord = function (result) {
+  if (result == RESULT_WIN) winner_player++;
+  else if (result == RESULT_LOSE) winner_comp++;
+  else winner_draw++;
+};
+
+var getWinLossResultDisplay = function () {
+  var total = winner_comp + winner_draw + winner_player;
+  var playerPercent = (winner_player / totaltotal) * 100;
+  var compPercent = (winner_comp / total) * 100;
+  return `
+  Player Win Number of Rounds: ${winner_player}/${total}
+  <br>
+  Number of draws: ${winner_draw}
+  <br>
+  Player Wins: ${playerPercent}%
+  <br>
+  Computer Wins: ${compPercent}%`;
+};
+
+var updateUsername = function (name) {
+  username = name;
+};
+
+var getUsername = function () {
+  return username;
+};
+
+var getGameMode = function () {};
+
 var main = function (input) {
   //possible input = scissor, paper, stone, unknown && contains reversed
   const split = input.split(" ");
@@ -69,14 +105,21 @@ var main = function (input) {
 
   var comPlayed = getPlayedHand(generateRandomChoice());
   var result = getNormalPlayResult(userPlayed, comPlayed);
-  console.log(result);
+
   if (playMode == PLAYMODE_REVERSED) result = getReversedResult(result);
 
-  return `The computer choice ${comPlayed}.
+  updateWinLossRecord(result);
+
+  return (
+    `The computer choice ${comPlayed}.
   <br>
   You chose ${userPlayed}
   <br><br>
   You ${result}
   <br><br>
-  Now you can type "scissors", "paper" or "stone" to play another round!`;
+  Now you can type "scissors", "paper" or "stone" to play another round!
+  <br><br>
+  So far ${username},
+  <br>` + getWinLossResultDisplay()
+  );
 };

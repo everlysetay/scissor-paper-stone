@@ -62,6 +62,12 @@ The <html> element is known as the root element of a HTML page. All other elemen
     <h1 id="header">Basics! 🚀</h1>
     <!-- The <div> tag defines a division or a section in an HTML document, and is commonly use as a "container" for nested HTML elements. -->
     <div id="container">
+      <!-- Addition to set username -->
+      <div id="username">
+        <p>Username:</p>
+        <input id="username-input" />
+        <button id="set-username" type="button">Set</button>
+      </div>
       <!-- The <p> tag defines a paragraph element. -->
       <p>Input:</p>
       <!-- The self-closing <input /> tag represents a field for a user to enter input. -->
@@ -95,6 +101,16 @@ The <html> element is known as the root element of a HTML page. All other elemen
 
         // Reset input value
         input.value = "";
+      });
+
+      // adding setUsername button details
+      var setusernameButton = document.querySelector("#set-username");
+      setusernameButton.addEventListener("click", function () {
+        var username = document.querySelector("#username-input");
+        if (username != "") {
+          var savedUser = updateUsername(username.value);
+        }
+        username.value = getUsername();
       });
     </script>
   </body>
